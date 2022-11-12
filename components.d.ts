@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ElInput: typeof import('element-plus/es')['ElInput']
     Terminal: typeof import('./src/components/terminal/Terminal.vue')['default']
   }
 }

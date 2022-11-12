@@ -33,7 +33,7 @@ let CmdMap: Record<string, Cmd> = {};
 
 
 (await loopDir(cmdsDirPath)).forEach((filenames) => {
-    import(filenames)
+    import(`./cmd/cmd_${filenames}`)
         .then((module) => {
             CmdList.push(module.cmd);
             CmdMap[module.cmd] = module.func;

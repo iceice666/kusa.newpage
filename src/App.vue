@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import terminal from "./components/Termianl.vue";
+import Terminal from "./components/terminal/Terminal.vue";
 </script>
 
 <template>
-  <div>
-    <div id="blockarea">
-      <terminal msg="" />
-    </div>
+  <div class="warp">
+    <Terminal />
   </div>
 </template>
 

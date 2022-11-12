@@ -2,10 +2,10 @@ interface Cmd {
     cmd: string;
     desc?: string | null;
     alias?: string[];
-    subCmd?: Record<string, CmdType>;
+    subCmd?: Record<string, Cmd>;
     params?: Params[];
     opts?: Opts[];
-    func: () => void;
+    func: (cmd_args?: string[]) => void;
 }
 
 interface Params {
@@ -24,3 +24,6 @@ interface Opts {
 }
 
 export { Cmd, Params, Opts }
+
+help = {}
+export { help }
