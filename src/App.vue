@@ -3,9 +3,7 @@ import Terminal from "./components/terminal/Terminal.vue";
 </script>
 
 <template>
-  <div class="warp">
-    <Terminal />
-  </div>
+  <Terminal />
 </template>
 
 <style scoped></style>

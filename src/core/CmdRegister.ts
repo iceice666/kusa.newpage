@@ -1,30 +1,14 @@
 
 import { Cmd, } from "./cmd"
 
-import { readdir, stat } from 'node:fs/promises';
+
+import { promises as fsp } from "fs"
 
 const cmdsDirPath: string = "/cmd/";
 
-async function loopDir(filePath: string): Promise<string[]> {
-    let filenames: string[] = [];
-
-    try {
-        const files = await readdir(filePath);
-        for (const file of files) {
-            let _stat = await stat(file);
-            if (_stat.isFile() && file.startsWith("cmd_")) {
-                filenames.push(file)
-            }
-            else if (_stat.isDirectory()) {
-                filenames = filenames.concat(await loopDir(file))
-            }
-        }
-    } catch (err) {
-        console.error(err);
-    } finally {
-        return filenames
-    }
-}
+const enabled_cmd: string[] = [
+    "date"
+]
 
 
 let CmdList: Cmd[] = [];
@@ -32,8 +16,8 @@ let CmdList: Cmd[] = [];
 let CmdMap: Record<string, Cmd> = {};
 
 
-(await loopDir(cmdsDirPath)).forEach((filenames) => {
-    import(`./cmd/cmd_${filenames}`)
+enabled_cmd.forEach((filenames) => {
+    import(`./cmd/cmd_${filenames}.ts`)
         .then((module) => {
             CmdList.push(module.cmd);
             CmdMap[module.cmd] = module.func;
